@@ -1,1 +1,5 @@
 # Fusion-360-FDM-threads
+
+Fusion 360's current selection of thread profiles aren't overly useful for those looking to design parts that will be 3D printed. Standard 60 degree V threads can be printed satisfactorily by decreasing print speed or increasing cooling. However their tolerances are still machining centric and thus can be difficult to print at times.
+
+Thankfully a workaround exists where custom thread profiles can be loaded into Fusion 360. The workaround is explained in this [Autodesk support article](https://knowledge.autodesk.com/support/fusion-360/learn-explore/caas/sfdcarticles/sfdcarticles/Custom-Threads-in-Fusion-360.html). Something not mentioned in this article is that the process needs to be repeated each time Fusion updates. I've found it much easier to just search for one of the common thread profiles (such as ACMEScrewThreads.xml), than trying to navigate to the latest release folder.
