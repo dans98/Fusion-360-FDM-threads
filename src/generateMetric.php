@@ -24,13 +24,13 @@ foreach ($angles as $angle) {
 
 	foreach ($threads as $size => $pitches) {
 		$threadSize = $threadType->addChild('ThreadSize'); 
-		$threadSize->addChild('Size', $size);
+		$threadSize->addChild('Size', sprintf('%.1f',$size));
 
 		foreach ($pitches as $pitch) {
 			$designation = $threadSize->addChild('Designation');
 			$designation->addChild('ThreadDesignation', 'FDM' . $angle . '-' . $size . 'x' . $pitch);
 			$designation->addChild('CTD', 'FDM' . $angle . '-' . $size . 'x' . $pitch);
-			$designation->addChild('Pitch', $pitch);
+			$designation->addChild('Pitch', sprintf('%.1f',$pitch));
 
 			/*
 			 * $pitch = thread pitch
@@ -57,7 +57,7 @@ foreach ($angles as $angle) {
 			$minorRadius = $radius-$height+$rootH+$crestH;
 
 			$tol = 0;
-			while ( $tol <= $tolMax && $tol <= $crestH && $tol <= $rootH) {
+			while ( round($tol,6) <= round($tolMax,6) && round($tol,6) <= round($crestH,6) && round($tol,6) <= round($rootH,6)) {
 				/*
 				 * $tol = the tolerance between the actual thread and the nominal thread
 				 * $externalMajorD = the major diameter of the external thread
@@ -76,17 +76,17 @@ foreach ($angles as $angle) {
 
 				$thread = $designation->addChild('Thread');
 				$thread->addChild('Gender', 'external');
-				$thread->addChild('Class', $tol . 'e');
-				$thread->addChild('MajorDia', $externalMajorD);
-				$thread->addChild('PitchDia', $externalPitchD);
-				$thread->addChild('MinorDia', $externalMinorD);
+				$thread->addChild('Class', sprintf('%.3f',$tol) . 'e');
+				$thread->addChild('MajorDia', sprintf('%.6f',$externalMajorD));
+				$thread->addChild('PitchDia', sprintf('%.6f',$externalPitchD));
+				$thread->addChild('MinorDia', sprintf('%.6f',$externalMinorD));
 
 				$thread = $designation->addChild('Thread');
 				$thread->addChild('Gender', 'internal');
-				$thread->addChild('Class', $tol . 'i');
-				$thread->addChild('MajorDia', $internalMajorD);
-				$thread->addChild('PitchDia', $internalPitchD);
-				$thread->addChild('MinorDia', $internalMinorD);
+				$thread->addChild('Class', sprintf('%.3f',$tol) . 'i');
+				$thread->addChild('MajorDia', sprintf('%.6f',$internalMajorD));
+				$thread->addChild('PitchDia', sprintf('%.6f',$internalPitchD));
+				$thread->addChild('MinorDia', sprintf('%.6f',$internalMinorD));
 
 				$tol += $tolStep;
 			}
